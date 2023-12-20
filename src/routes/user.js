@@ -35,7 +35,7 @@ router.get("/users/:id", (req, res) => {
 router.delete("/users/:id", (req, res) => {
   const { id } = req.params;
   userSchema
-    .deleteOne({_id: id})
+    .deleteOne({_isbn : isbn})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
@@ -43,9 +43,9 @@ router.delete("/users/:id", (req, res) => {
 // update a user
 router.put("/users/:idUser", (req, res) => {
   const { idUser } = req.params;
-  const { titulo, autor, genero, cantPaginas,año} = req.body;
+  const { titulo, autor, genero, cantPaginas,año,isbn} = req.body;
   userSchema
-    .updateOne({ _id: idUser }, { $set: { titulo, autor, genero, cantPaginas,año}})
+    .updateOne({ _id: idUser }, { $set: { titulo, autor, genero, cantPaginas,año,isbn}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });

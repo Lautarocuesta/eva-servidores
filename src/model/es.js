@@ -18,6 +18,10 @@ const libroSchema = new mongoose.Schema({
         type: Number,
         required: [true, "La cantidad de páginas del libro es requerida"],    
     },
+    isbn: { 
+        type: Number,
+        required: [true, "La cantidad de identifiacion es requerida del libro es requerida"],    
+    },
     año: {
         type: Number,
         required: [true, "El año de publicación del libro es requerido"],
