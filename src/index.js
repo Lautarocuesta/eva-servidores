@@ -1,14 +1,18 @@
 const express = require("express");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express ();
 const port = process.env.port || 2700;
-const path = require("path")
+
 //routes
 app.get("/",(req,res)=>{
 res.send("welcome to my api");
 });
+
+//middleware
+app.use(express.json());
+app.use("/api", userRoutes);
 
 //mongo db connection
 mongoose

@@ -43,9 +43,9 @@ router.delete("/users/:id", (req, res) => {
 // update a user
 router.put("/users/:idUser", (req, res) => {
   const { idUser } = req.params;
-  const { title, id, description } = req.body;
+  const { titulo, autor, genero, cantPaginas,año} = req.body;
   userSchema
-    .updateOne({ _id: idUser }, { $set: { title, id, description } })
+    .updateOne({ _id: idUser }, { $set: { titulo, autor, genero, cantPaginas,año}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
