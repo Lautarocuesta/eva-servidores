@@ -1,12 +1,9 @@
 const express = require("express");
-
 const userSchema = require("../model/es.js");
-
 const router = express.Router();
 
 // create user
-router.post("/users", (req, res) => {
-    
+router.post("/insertar", (req, res) => {
   const user = userSchema(req.body);
   user
     .save()
@@ -15,37 +12,37 @@ router.post("/users", (req, res) => {
 });
 
 // get all users
-router.get("/users", (req, res) => {
+router.get("/listar", (req, res) => {
   userSchema
     .find()
-    .then((data) => res.render("index",{data:data}))
+    .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // get a user
-router.get("/users/:id", (req, res) => {
-  const { id } = req.params;
+router.get("/obtener/:isbn", (req, res) => {
+  const { isbn } = req.params;
   userSchema
-    .findById(id)
-    .then((data) => res.render("index",{data:data}))
+    .find({isbn: isbn})
+    .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/users/:id", (req, res) => {
-  const { id } = req.params;
+router.delete("/eliminar/:isbn", (req, res) => {
+  const { isbn } = req.params;
   userSchema
-    .deleteOne({_isbn : isbn})
+    .deleteOne({isbn : isbn})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/users/:idUser", (req, res) => {
-  const { idUser } = req.params;
-  const { titulo, autor, genero, cantPaginas,año,isbn} = req.body;
+router.put("/modificar/:isbn", (req, res) => {
+  const { isbn } = req.params;
+  const { titulo, autor, genero, cantpaginas, año} = req.body;
   userSchema
-    .updateOne({ _id: idUser }, { $set: { titulo, autor, genero, cantPaginas,año,isbn}})
+    .updateOne({ isbn: isbn }, { $set: { titulo, autor, genero, cantpaginas,año}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
