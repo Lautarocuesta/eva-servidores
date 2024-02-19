@@ -2,8 +2,8 @@ const express = require("express");
 const userSchema = require("../model/es.js");
 const router = express.Router();
 
-// create user
-router.post("/insertar", (req, res) => {
+
+router.post("/productos", (req, res) => {
   const user = userSchema(req.body);
   user
     .save()
@@ -11,8 +11,8 @@ router.post("/insertar", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-// get all users
-router.get("/listar", (req, res) => {
+
+router.get("/productos", (req, res) => {
   userSchema
     .find()
     .then((data) => res.json(data))
@@ -20,29 +20,29 @@ router.get("/listar", (req, res) => {
 });
 
 // get a user
-router.get("/obtener/:isbn", (req, res) => {
-  const { isbn } = req.params;
+router.get("/productos/:id", (req, res) => {
+  const { id } = req.params;
   userSchema
-    .find({isbn: isbn})
+    .find({id: id})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/eliminar/:isbn", (req, res) => {
-  const { isbn } = req.params;
+router.delete("/productos/:id", (req, res) => {
+  const { id } = req.params;
   userSchema
-    .deleteOne({isbn : isbn})
+    .deleteOne({id : id})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/modificar/:isbn", (req, res) => {
-  const { isbn } = req.params;
-  const { titulo, autor, genero, cantpaginas, año} = req.body;
+router.put("/productos/:id", (req, res) => {
+  const { id } = req.params;
+  const { nombre, descripcion, precio, cantstock} = req.body;
   userSchema
-    .updateOne({ isbn: isbn }, { $set: { titulo, autor, genero, cantpaginas,año}})
+    .updateOne({ id: id }, { $set: { nombre, descripcion, precio, cantstock}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });

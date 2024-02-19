@@ -1,33 +1,25 @@
 const mongoose = require("mongoose");
 
-// Crear el Schema para el libro
-const libroSchema = new mongoose.Schema({
-    titulo: {
+// Crear el Schema para los datos
+const datosSchema = new mongoose.Schema({
+    nombre: {
         type: String,
-        required: [true, "El título  es requerido"],
+        required: [true, "El nombre es requerido"],
     },
-    autor: {
+    descripcion: {
         type: String,
-        required: [true, "El autor del libro es requerido"],
+        required: [true, "La descricion es requerida"],
     },
-    genero: {
-        type: String,
-        required: [true, "El género del libro es requerido"],
-    },
-    cantpaginas: { 
+    precio: {
         type: Number,
-        required: [true, "La cantidad de páginas del libro es requerida"],    
+        required: [true, "El precio es requerido"],
     },
-    isbn: { 
+    cantstock: { 
         type: Number,
-        required: [true, "La cantidad de identifiacion es requerida del libro es requerida"],    
-    },
-    año: {
-        type: Number,
-        required: [true, "El año de publicación del libro es requerido"],
+        required: [true, "La cantstock es requerido"],    
     },
 });
 
-const Libro = mongoose.model("Libro", libroSchema);
+const datos = mongoose.model("datos", datosSchema);
 
-module.exports = Libro;
+module.exports = datos;

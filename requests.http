@@ -1,27 +1,24 @@
 ###
-POST http://localhost:2700/api/users HTTP/1.1
+POST http://localhost:2700/productos HTTP/1.1
 Content-Type: application/json
 
 {
-"titulo":"monoss",
-"autor": "yo",
-"genero":"literario",
-"cantpaginas": "330",
-"año":"2023"
+"nombre":"reloj",
+"descripcion": "casio",
+"precio":"1000",
+"cantstock": "20"
 }
 ###
-GET http://localhost:2700/api/users HTTP/1.1
+GET http://localhost:2700/productos HTTP/1.1
 
 ###
-DELETE http://localhost:2700/api/users/:isbn HTTP/1.1
+DELETE http://localhost:2700/productos/:id HTTP/1.1
 ### 
-PUT http://localhost:3000/api/users/id HTTP/1.1
+PUT http://localhost:2700/productos/:id HTTP/1.1
 Content-Type: application/json
 {
-"titulo":"monos",
-"autor": "yo",
-"genero":"literario",
-"cantpaginas": "330",
-"año":"2023",
-"isbn": "12345678",
+"nombre":"reloj",
+"descripcion": "rolex",
+"precio":"10000",
+"cantstock": "2"
 }
